@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catalog</title>
+</head>
+<body>
+    <h2>Catalog</h2>
+    {% for flower in flowers %}
+    <div>
+        <h3>{{ flower.name }}</h3>
+        <p>Price: ${{ flower.price }}</p>
+        <form method="POST" action="{% url 'create_order' %}">
+            {% csrf_token %}
+            <input type="hidden" name="flower_id" value="{{ flower.id }}">
+            <button type="submit">Order</button>
+        </form>
+    </div>
+    {% endfor %}
+</body>
+</html>
