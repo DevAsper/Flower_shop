@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>"Всем букеты"</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать в магазин "Всем букеты"</h1>
+    </header>
+    <main>
+        <div class="buttons">
+            <a href="{% url 'login' %}" class="btn">Войти</a>
+            <a href="{% url 'register' %}" class="btn">Зарегестрироваться</a>
+        </div>
+    </main>
+</body>
+</html>

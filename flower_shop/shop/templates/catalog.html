@@ -1,20 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Catalog</title>
+    <meta charset="UTF-8">
+    <title>Catalog - FlowerShop</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h2>Catalog</h2>
-    {% for flower in flowers %}
-    <div>
-        <h3>{{ flower.name }}</h3>
-        <p>Price: ${{ flower.price }}</p>
-        <form method="POST" action="{% url 'create_order' %}">
-            {% csrf_token %}
-            <input type="hidden" name="flower_id" value="{{ flower.id }}">
-            <button type="submit">Order</button>
-        </form>
-    </div>
-    {% endfor %}
+    <header>
+        <h1>Catalog</h1>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'orders' %}">Your Orders</a>
+                <a href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+                <a href="{% url 'login' %}">Log In</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        <div class="product-list">
+            {% for product in products %}
+                <div class="product-item">
+                    <h2>{{ product.name }}</h2>
+                    <p>{{ product.description }}</p>
+                    <p>Price: ${{ product.price }}</p>
+                    <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
 </body>
 </html>
